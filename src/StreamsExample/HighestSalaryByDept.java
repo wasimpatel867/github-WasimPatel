@@ -21,7 +21,7 @@ public class HighestSalaryByDept {
         );
 
         List<String> highestpaid = employees.stream()
-                .filter(emp -> emp.getSalary() > 75000)
+                .filter(emp -> emp.getSalary() > 60000)
                 .map(Employee::getNames)
                 .toList();
         System.out.println("Employees with salary greater than 60000: " + highestpaid);

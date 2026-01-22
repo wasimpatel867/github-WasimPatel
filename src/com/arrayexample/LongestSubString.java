@@ -16,17 +16,15 @@ public class LongestSubString {
             if (map.containsKey(ch)) {
                 left = Math.max(left, map.get(ch) + 1);
             }
-
             map.put(ch, right); // Update last seen index
-
             maxLength = Math.max(maxLength, right - left + 1);
         }
-
         return maxLength;
     }
-
     public static void main(String[] args) {
         String s = "abcabcbb";
         System.out.println(lengthOfLongestSubstring(s));
+        System.out.println(lengthOfLongestSubstring("bbbb"));
+        System.out.println(lengthOfLongestSubstring("pwwkew"));
     }
 }

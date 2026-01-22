@@ -10,7 +10,10 @@ public class FrequencyofEachWord {
     public static void main(String[] args) {
         List<String> words = Arrays.asList("apple","banana","pineapple","grapefruit","apple",
                 "banana");
-     Map<String,Long> countmap = words.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+     Map<String,Long> countmap = words.stream()
+             .collect(Collectors.groupingBy(
+                     Function.identity()
+                     , Collectors.counting()));
 
         System.out.println("Frequency of Each Word : " + countmap);
     }
