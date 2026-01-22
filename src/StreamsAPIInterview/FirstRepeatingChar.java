@@ -13,11 +13,12 @@ public class FirstRepeatingChar {
              .mapToObj(c -> (char)c)
                 .collect(Collectors.groupingBy
                         (Function.identity(),
-                LinkedHashMap::new,
+                         LinkedHashMap::new,
                         Collectors.counting()
                 ))
              .entrySet()
-             .stream().filter(e -> e.getValue() > 1)
+             .stream()
+             .filter(e -> e.getValue() > 1)
              .map(Map.Entry::getKey)
              .findFirst()
              .orElse(null);
