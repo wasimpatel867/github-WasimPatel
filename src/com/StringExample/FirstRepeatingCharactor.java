@@ -10,7 +10,7 @@ public class FirstRepeatingCharactor {
         Set<Character> set = new HashSet<>();
 
         for (char ch : str.toCharArray()) {
-            if (!set.add(ch)) {
+           if (!set.add(ch) ) {
                 System.out.println("First Reapeating Charactor: " + ch);
                 return;
             }
