@@ -14,7 +14,8 @@ public class DuplicateCharacter {
                 .collect(Collectors.groupingBy(
                         Function.identity(),Collectors.counting()
 
-                )).entrySet()
+                ))
+                .entrySet()
                 .stream()
                 .filter(e -> e.getValue() > 1)
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));

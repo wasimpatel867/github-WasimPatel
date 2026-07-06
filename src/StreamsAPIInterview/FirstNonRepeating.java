@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 public class FirstNonRepeating {
     public static void main(String[] args) {
 
-        String  str = "IamJavaDeveloper";
+        String  str = "programming";
 
        Character ch =  str.chars()
                 .mapToObj(c -> (char)c)
