@@ -8,13 +8,14 @@ import java.util.stream.Collectors;
 public class StreamExample {
     public static  void main(String[] args) {
 
-        List<String> names = Arrays.asList("Wasim","Vaibhav","Kalpesh","Sachin");
+        List<String> names = Arrays.asList("Wasim","Vaibhav","Kalpesh","Sachin"," ");
 
         List<String> filteredNames = names.stream()
                 .filter(name -> name.startsWith("W"))
+                .filter(name -> name.startsWith(" "))
                 .map(String::toUpperCase)
                 .collect(Collectors.toList());
         System.out.println("Names starting with W (in uppercase): " + filteredNames);
-
+        System.out.println("Names starting with ' ' (in uppercase): " + filteredNames);
     }
 }

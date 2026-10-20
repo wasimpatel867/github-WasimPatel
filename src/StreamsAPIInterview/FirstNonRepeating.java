@@ -7,7 +7,8 @@ import java.util.stream.Collectors;
 
 public class FirstNonRepeating {
     public static void main(String[] args) {
-        String  str = "aaaabbccbdd";
+
+        String  str = "programming";
 
        Character ch =  str.chars()
                 .mapToObj(c -> (char)c)
@@ -18,7 +19,7 @@ public class FirstNonRepeating {
                 ))
                 .entrySet()
                 .stream()
-                .filter(e -> e.getValue() == 3)
+                .filter(e -> e.getValue() == 1)
                 .map(Map.Entry::getKey)
                 .findFirst()
                 .orElse(null);

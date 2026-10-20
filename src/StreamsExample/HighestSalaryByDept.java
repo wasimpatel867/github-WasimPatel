@@ -1,12 +1,9 @@
 package StreamsExample;
 
-import java.awt.*;
-import java.sql.SQLOutput;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class HighestSalaryByDept {
@@ -17,23 +14,36 @@ public class HighestSalaryByDept {
                 new Employee("Bob", "IT", 75000),
                 new Employee("Charlie", "HR", 55000),
                 new Employee("David", "HR", 65000),
-                new Employee("Eve", "finance", 70000)
+                new Employee("Eve", "Finance", 70000)
         );
 
-        List<String> highestpaid = employees.stream()
-                .filter(emp -> emp.getSalary() > 60000)
-                .map(Employee::getNames)
-                .toList();
-        System.out.println("Employees with salary greater than 60000: " + highestpaid);
-        /*Map<String, Optional<Employee>> highestSalaryByDept = employees.stream()
+        // Approach 1: Using collectingAndThen to unwrap Optional (Recommended)
+        Map<String, Employee> highestSalaryByDept = employees.stream()
+                .collect(Collectors.groupingBy(
+                        Employee::getDepartments,
+                        Collectors.collectingAndThen(
+                                Collectors.maxBy(Comparator.comparingDouble(Employee::getSalary)),
+                                optional -> optional.orElse(null)
+                        )
+                ));
+
+        highestSalaryByDept.forEach((department, employee) -> {
+            if (employee != null) {
+                System.out.println(department + " -> " + employee.getNames() + " : " + employee.getSalary());
+            }
+        });
+
+        // Approach 2: Using Optional directly (if you prefer Optional)
+        System.out.println("\n--- Alternative Approach with Optional ---");
+        Map<String, java.util.Optional<Employee>> highestSalaryByDeptOptional = employees.stream()
                 .collect(Collectors.groupingBy(
                         Employee::getDepartments,
                         Collectors.maxBy(Comparator.comparingDouble(Employee::getSalary))
                 ));
 
-        highestSalaryByDept.forEach((department, employee) ->
-
-          System.out.println(department+ " -> " + employee.get().getNames() + " : " + employee.get().getSalary()));
-    }*/
+        highestSalaryByDeptOptional.forEach((department, employee) ->
+                employee.ifPresent(emp -> System.out.println(department + " -> " + emp.getNames() + " : " + emp.getSalary()))
+        );
     }
 }
+
